@@ -24,18 +24,19 @@ func createWindow(title string, x int, y int, width int, height int) (*Window, e
 
 func printWindow(w *Window, a [99]string) {
 	fmt.Println(w.title)
+	const o = " "
 	for _ = range w.width {
 		fmt.Printf("_")
 	}
 	fmt.Printf("\n")
-	for _ = range w.height {
-		fmt.Printf("|")
+	//for _ = range w.height {
+		//fmt.Printf("|")
 		for i := range 10 {
 			fmt.Println("|",a[i],"|")
 			fmt.Println("|",a[i],"|")
 		} 
-		fmt.Println("|")
-	}
+		//fmt.Printf("%s %4s",o,o)
+	//}
 	for _ = range w.width {
 		fmt.Printf("-")
 	}
@@ -49,7 +50,6 @@ func refreshSprite(w *Window, spriteArray []string) {
 			a[j] += spriteArray[i+j]
 			a[j] += spriteArray[i+j]
 		}
-
 	}
 	printWindow(w,a)
 	//for i := range 10 {
@@ -63,7 +63,8 @@ func refreshSprite(w *Window, spriteArray []string) {
 	//fmt.Println("arr: ",a)
 }
 
-// TODO create window: WIP
+func 
+
 // TODO decompression
 
 
