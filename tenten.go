@@ -1,7 +1,30 @@
 package main
 
 import (
+	//"bufio"
+	//"encoding/binary"
 	"fmt"
+	"os"
+)
+
+
+const (
+	SP int = 32
+	COMMA = 44
+	HYPHEN = 45	
+)
+
+const (
+	ZERO = iota + 48
+	ONE
+	TWO
+	THREE
+	FOUR
+	FIVE
+	SIX
+	SEVEN
+	EIGHT
+	NINE
 )
 
 type Window struct {
@@ -9,6 +32,7 @@ type Window struct {
 	x, y int
 	width, height int
 }
+
 
 func check(e error) {
 	if e != nil {
@@ -62,10 +86,14 @@ func refreshSprite(w *Window, spriteArray []string) {
 
 	//fmt.Println("arr: ",a)
 }
+ 
+func toInt(data []byte) (intArr []int, error) {
+	intArr := []int
 
-func 
+	return intArr, error
+}
 
-// TODO decompression
+// TODO decompression WIP
 
 
 func main() {
@@ -76,6 +104,24 @@ func main() {
 	blank := []string{o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o}
 	filled := []string{x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x}
 	testArr := []string{x,x,x,x,x,x,x,o,o,o,o,x,x,x,x,x,o,o,o,o,o,o,x,x,x,x,x,o,o,o,o,o,o,x,x,o,o,x,x,o,o,o,o,o,x,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o}
+
+	dat, err := os.ReadFile("./data/399.tt")
+	check(err)
+	fmt.Print(string(dat))
+
+	// 32 SP
+	// 44 ,
+	// 45 -
+	// 48-58 0-9
+
+	toInt(dat)
+
+	//number := binary.LittleEndian.Uint16(dat)
+	fmt.Printf("Parsed to int: %v\n", dat[21])
+
+	//var data = int(f) 	
+	//fmt.Println(data)
+
 
 	compressed_a := [10]int{ 103,  38, 100, 384,  -8, -24, -24, -24, -24, -24}
 
