@@ -5,11 +5,12 @@ import (
 	//"encoding/binary"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 
 const (
-	SP int = 32
+	SP = 32
 	COMMA = 44
 	HYPHEN = 45	
 )
@@ -54,12 +55,12 @@ func printWindow(w *Window, a [99]string) {
 	}
 	fmt.Printf("\n")
 	//for _ = range w.height {
-		//fmt.Printf("|")
-		for i := range 10 {
-			fmt.Println("|",a[i],"|")
-			fmt.Println("|",a[i],"|")
-		} 
-		//fmt.Printf("%s %4s",o,o)
+	//fmt.Printf("|")
+	for i := range 10 {
+		fmt.Println("|",a[i],"|")
+		fmt.Println("|",a[i],"|")
+	} 
+	//fmt.Printf("%s %4s",o,o)
 	//}
 	for _ = range w.width {
 		fmt.Printf("-")
@@ -86,11 +87,20 @@ func refreshSprite(w *Window, spriteArray []string) {
 
 	//fmt.Println("arr: ",a)
 }
- 
-func toInt(data []byte) (intArr []int, error) {
-	intArr := []int
 
-	return intArr, error
+func toInt(data []byte) []int {
+	intArr := []int{}
+
+	//for i := range data {
+	//fmt.Printf("%v ",data[i])
+	//switch data {
+	//case COMMA:
+	//fmt.Println(COMMA)
+	//}
+	//}
+
+
+	return intArr
 }
 
 // TODO decompression WIP
@@ -114,7 +124,29 @@ func main() {
 	// 45 -
 	// 48-58 0-9
 
-	toInt(dat)
+	s, err := strconv.Atoi(string(dat[0]))
+	if err!= nil {
+		fmt.Println("Error: ASCII to integer failed")
+	}
+
+	// TODO ASCII to int array function
+
+	for i := range dat {
+		switch dat[i] {
+		case COMMA:
+			fmt.Println(dat[i])	
+		case SP:
+			fmt.Println("space")
+		case HYPHEN:
+			fmt.Println("hyphen")
+		default:
+			if dat[i]>=ZERO {
+				fmt.Println("number")
+			}
+			fmt.Println("Unexpected character: ", dat[i])
+		}
+	}
+	fmt.Println("val of int s:", s)
 
 	//number := binary.LittleEndian.Uint16(dat)
 	fmt.Printf("Parsed to int: %v\n", dat[21])
